@@ -1,7 +1,7 @@
 # CI/CD Practice
 ## Building
 ```sh
-cd ci-hands-on
+cd Ci-Hands-On
 mkdir build && cd build
 cmake ../ # this may hang briefly as dependencies are fetched from git
 make -j$(nproc)
