@@ -4,7 +4,7 @@
 cd ci-hands-on
 mkdir build && cd build
 cmake ../ # this may hang briefly as dependencies are fetched from git
-make -$(nproc)
+make -j$(nproc)
 ```
 
 ### Setting Build Options
