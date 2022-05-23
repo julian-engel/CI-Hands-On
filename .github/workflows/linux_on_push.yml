@@ -1,0 +1,18 @@
+name: Linux On Push
+
+on:
+  push:
+    branches:
+    - master
+  workflow_dispatch:
+    
+jobs:
+  build:
+    uses: ./.github/workflows/linux_build.yml
+  test:
+    needs: build
+    uses: ./.github/workflows/linux_test.yml
+  security_issue:
+    runs-on: ubuntu-20.04
+    steps:
+      - run: echo ${{ secrets.FAKE_SECRET }}

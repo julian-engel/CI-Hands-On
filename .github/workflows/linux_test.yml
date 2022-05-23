@@ -1,0 +1,16 @@
+name: Linux Run Tests
+
+on: workflow_call
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Fetch artifacts from build workflow
+        uses: actions/download-artifact@v3
+        with:
+          name: linux-unittest-artifacts.tar
+      - name: Extract unit test artifacts
+        run: tar -xf linux-unittest-artifacts.tar
+      - name: Run tests
+        run: cd build/tests && ctest

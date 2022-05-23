@@ -1,0 +1,23 @@
+name: Linux Build
+
+on: [workflow_call]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+      - name: Build
+        run: |
+          mkdir build &&
+          cd build &&
+          cmake ../ &&
+          make -j$(nproc)
+      - name: Compress and upload testing artifacts
+        run: tar -cf linux-unittest-artifacts.tar build/tests/*
+      - uses: actions/upload-artifact@v3
+        with:
+          name: linux-unittest-artifacts.tar
+          path: ./linux-unittest-artifacts.tar
+          retention-days: 1

@@ -1,0 +1,7 @@
+name: Linux On PR
+
+on: [pull_request, workflow_dispatch]
+
+jobs:
+  test:
+    uses: ./.github/workflows/linux_test.yml
